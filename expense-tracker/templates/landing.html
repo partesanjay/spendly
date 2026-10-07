@@ -144,7 +144,7 @@
                         <span class="avatar av-peach">🍴</span>
                         <div class="who"><strong>Food</strong><small>12 entries</small></div>
                         <div class="more"><b>Lunch, groceries and dining out</b><a href="{{ url_for('register') }}">spendly/food</a></div>
-                        <span class="pill green">This month</span>
+                        <a href="https://www.youtube.com/watch?v=-Lt-ntUDj-g&t=1082s" target="_blank" rel="noopener" class="pill green" id="yt-open">This month</a>
                     </div>
                     <div class="row-card">
                         <span class="avatar av-dark">🧾</span>
@@ -203,6 +203,30 @@
             </aside>
         </div>
     </div>
+
+    <div class="yt-modal" id="yt-modal" hidden>
+        <div class="yt-box">
+            <button type="button" class="yt-close" id="yt-close" aria-label="Close">✕</button>
+            <iframe id="yt-frame" title="YouTube video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var modal = document.getElementById('yt-modal');
+            var frame = document.getElementById('yt-frame');
+            var src = 'https://www.youtube.com/embed/-Lt-ntUDj-g?start=1082&autoplay=1';
+            function close() { modal.hidden = true; frame.src = ''; }
+            document.getElementById('yt-open').addEventListener('click', function (e) {
+                e.preventDefault();
+                frame.src = src;
+                modal.hidden = false;
+            });
+            document.getElementById('yt-close').addEventListener('click', close);
+            modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+        })();
+    </script>
 
 </body>
 </html>

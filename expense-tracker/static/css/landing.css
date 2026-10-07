@@ -297,3 +297,18 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round
     .more { flex-basis: 100%; order: 3; }
     .chart-head { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
+
+/* ---------- YouTube popup ---------- */
+.yt-modal {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(0, 0, 0, 0.75);
+    display: grid; place-items: center;
+}
+.yt-modal[hidden] { display: none; }
+.yt-box { position: relative; width: min(900px, 92vw); aspect-ratio: 16 / 9; background: #000; border-radius: 12px; }
+.yt-box iframe { width: 100%; height: 100%; border: 0; border-radius: 12px; }
+.yt-close {
+    position: absolute; top: -14px; right: -14px;
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 0; background: var(--pink); color: #2a2a2a; cursor: pointer;
+}
