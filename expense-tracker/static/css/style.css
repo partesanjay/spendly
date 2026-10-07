@@ -521,6 +521,30 @@ a { color: inherit; text-decoration: none; }
 
 .footer-links a:hover { color: var(--paper); }
 
+/* Legal pages (terms, privacy) */
+.legal-section {
+    padding: 3rem 2rem;
+}
+
+.legal-container {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.legal-body {
+    text-align: left;
+    margin-top: 2rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+}
+
+.legal-body h2 {
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin: 1.75rem 0 0.5rem;
+}
+
 /* ------------------------------------------------------------------ */
 /* Responsive                                                         */
 /* ------------------------------------------------------------------ */
