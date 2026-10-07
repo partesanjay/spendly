@@ -1,92 +1,208 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spendly — Track Every Rupee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+</head>
+<body class="dash">
 
-{% block title %}Spendly — Track Every Rupee{% endblock %}
+    <!-- Sidebar -->
+    <aside class="side">
+        <a href="{{ url_for('landing') }}" class="side-logo" aria-label="Spendly">
+            <svg viewBox="0 0 32 40" width="30" height="38" fill="none" stroke="#b9a4f5" stroke-width="3" stroke-linecap="round">
+                <path d="M8 12c0-5 5-8 9-6s4 8-1 10-9 4-4 10 12 4 12-1"/>
+            </svg>
+            <span>SPENDLY</span>
+        </a>
+        <nav class="side-nav">
+            <a href="{{ url_for('landing') }}" class="side-btn active" aria-label="Home">
+                <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg>
+            </a>
+            <a href="{{ url_for('login') }}" class="side-btn" aria-label="Activity">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>
+            </a>
+            <a href="{{ url_for('login') }}" class="side-btn" aria-label="Goals">
+                <svg viewBox="0 0 24 24"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4v1a4 4 0 0 0 4 4M16 6h4v1a4 4 0 0 1-4 4M12 13v4M8 21h8M10 17h4"/></svg>
+            </a>
+            <a href="{{ url_for('login') }}" class="side-btn" aria-label="Calendar">
+                <svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+            </a>
+            <a href="{{ url_for('login') }}" class="side-btn" aria-label="Reports">
+                <svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></svg>
+            </a>
+            <a href="{{ url_for('login') }}" class="side-btn" aria-label="Settings">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+            </a>
+        </nav>
+    </aside>
 
-{% block content %}
+    <div class="stage">
 
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-badge">Personal Finance Tracker</div>
-        <h1 class="hero-title">
-            Know where your<br>
-            <em>money goes</em>
-        </h1>
-        <p class="hero-subtitle">
-            Log expenses, understand your spending patterns,
-            and take control of your financial life —
-            one transaction at a time.
-        </p>
-        <div class="hero-actions">
-            <a href="{{ url_for('register') }}" class="btn-primary">Start tracking free</a>
-            <a href="{{ url_for('login') }}" class="btn-ghost">Sign in</a>
-        </div>
-    </div>
-    <div class="hero-visual">
-        <div class="mock-card">
-            <div class="mock-card-header">
-                <span class="mock-label">March 2026</span>
-                <span class="mock-total">₹12,450</span>
+        <!-- Top bar -->
+        <header class="topbar">
+            <h1 class="page-title">My Dashboard</h1>
+            <form class="search" onsubmit="return false">
+                <input type="text" placeholder="Search..." aria-label="Search">
+                <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+            </form>
+            <div class="top-right">
+                <button class="icon-btn plain" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg>
+                </button>
+                <span class="avatar av-main" aria-hidden="true">S</span>
+                <a href="{{ url_for('login') }}" class="icon-btn" aria-label="Sign in">
+                    <svg viewBox="0 0 24 24"><path d="M14 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5M10 8l-4 4 4 4M6 12h10"/></svg>
+                </a>
             </div>
-            <div class="mock-bars">
-                <div class="mock-bar-row">
-                    <span class="mock-cat">Bills</span>
-                    <div class="mock-bar-track">
-                        <div class="mock-bar" style="width: 72%"></div>
+        </header>
+
+        <div class="layout">
+
+            <!-- Main panel -->
+            <main class="panel">
+
+                <div class="info-row">
+                    <div class="info-card">
+                        <h3><span class="dot d-pink">◈</span>Log Expenses</h3>
+                        <ul>
+                            <li>Add any expense in seconds</li>
+                            <li>Category, amount, date, description</li>
+                            <li>Edit or delete entries any time</li>
+                        </ul>
                     </div>
-                    <span class="mock-amt">₹4,500</span>
-                </div>
-                <div class="mock-bar-row">
-                    <span class="mock-cat">Food</span>
-                    <div class="mock-bar-track">
-                        <div class="mock-bar mock-bar-2" style="width: 52%"></div>
+                    <div class="info-card">
+                        <h3><span class="dot d-purple">◎</span>Spending Insights</h3>
+                        <ul>
+                            <li>Category breakdowns</li>
+                            <li>Monthly summaries and totals</li>
+                            <li>Spot your biggest spending areas</li>
+                        </ul>
                     </div>
-                    <span class="mock-amt">₹3,200</span>
-                </div>
-                <div class="mock-bar-row">
-                    <span class="mock-cat">Health</span>
-                    <div class="mock-bar-track">
-                        <div class="mock-bar mock-bar-3" style="width: 33%"></div>
+                    <div class="info-card">
+                        <h3><span class="dot d-orange">◷</span>Time Filters</h3>
+                        <ul>
+                            <li>Last week or last month</li>
+                            <li>Pick a custom date range</li>
+                            <li>Compare periods side by side</li>
+                        </ul>
                     </div>
-                    <span class="mock-amt">₹2,050</span>
                 </div>
-                <div class="mock-bar-row">
-                    <span class="mock-cat">Transport</span>
-                    <div class="mock-bar-track">
-                        <div class="mock-bar mock-bar-4" style="width: 28%"></div>
+
+                <section class="chart-card">
+                    <div class="chart-head">
+                        <h2>Monthly Spending</h2>
+                        <div class="tabs">
+                            <button type="button">Daily</button>
+                            <button type="button">Weekly</button>
+                            <button type="button" class="on">Monthly</button>
+                        </div>
                     </div>
-                    <span class="mock-amt">₹1,800</span>
+                    <div class="chart">
+                        <div class="y-axis"><span>200</span><span>150</span><span>100</span><span>50</span><span>0</span></div>
+                        <div class="plot">
+                            <svg viewBox="0 0 520 150" preserveAspectRatio="none" overflow="visible">
+                                <defs>
+                                    <linearGradient id="fill-blue" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0" stop-color="#8a88d8" stop-opacity="0.22"/>
+                                        <stop offset="1" stop-color="#8a88d8" stop-opacity="0.02"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M10.0,111.6 C17.6,109.8 40.3,108.6 55.5,100.8 C70.6,93.0 85.8,81.6 100.9,64.8 C116.1,48.0 131.2,3.0 146.4,0.0 C161.5,-3.0 176.7,33.0 191.8,46.8 C207.0,60.6 222.1,78.6 237.3,82.8 C252.4,87.0 267.6,73.2 282.7,72.0 C297.9,70.8 313.0,70.2 328.2,75.6 C343.3,81.0 358.5,111.0 373.6,104.4 C388.8,97.8 403.9,51.6 419.1,36.0 C434.2,20.4 449.4,0.0 464.5,10.8 C479.7,21.6 502.4,85.8 510.0,100.8 L510.0,150 L10.0,150 Z" fill="url(#fill-blue)"/>
+                                <path d="M10.0,111.6 C17.6,109.8 40.3,108.6 55.5,100.8 C70.6,93.0 85.8,81.6 100.9,64.8 C116.1,48.0 131.2,3.0 146.4,0.0 C161.5,-3.0 176.7,33.0 191.8,46.8 C207.0,60.6 222.1,78.6 237.3,82.8 C252.4,87.0 267.6,73.2 282.7,72.0 C297.9,70.8 313.0,70.2 328.2,75.6 C343.3,81.0 358.5,111.0 373.6,104.4 C388.8,97.8 403.9,51.6 419.1,36.0 C434.2,20.4 449.4,0.0 464.5,10.8 C479.7,21.6 502.4,85.8 510.0,100.8" fill="none" stroke="#8a88d8" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+                                <path d="M10.0,90.0 C17.6,88.2 40.3,88.2 55.5,79.2 C70.6,70.2 85.8,42.6 100.9,36.0 C116.1,29.4 131.2,33.0 146.4,39.6 C161.5,46.2 176.7,72.0 191.8,75.6 C207.0,79.2 222.1,50.4 237.3,61.2 C252.4,72.0 267.6,127.8 282.7,140.4 C297.9,153.0 313.0,141.6 328.2,136.8 C343.3,132.0 358.5,118.8 373.6,111.6 C388.8,104.4 403.9,98.4 419.1,93.6 C434.2,88.8 449.4,81.0 464.5,82.8 C479.7,84.6 502.4,100.8 510.0,104.4" fill="none" stroke="#f0a8e4" stroke-width="1.6" vector-effect="non-scaling-stroke"/>
+                            </svg>
+                            <!-- data points as HTML so they stay round while the svg stretches -->
+                            <i class="pt b" style="left:1.9%;top:74%"></i>
+                            <i class="pt b" style="left:19.4%;top:43%"></i>
+                            <i class="pt b" style="left:28.2%;top:0%"></i>
+                            <i class="pt b" style="left:36.9%;top:31%"></i>
+                            <i class="pt b" style="left:54.4%;top:48%"></i>
+                            <i class="pt b" style="left:71.8%;top:70%"></i>
+                            <i class="pt b" style="left:89.3%;top:7%"></i>
+                            <i class="pt p" style="left:10.7%;top:53%"></i>
+                            <i class="pt p" style="left:28.2%;top:26%"></i>
+                            <i class="pt p" style="left:45.6%;top:41%"></i>
+                            <i class="pt p" style="left:63.1%;top:91%"></i>
+                            <i class="pt p" style="left:80.6%;top:62%"></i>
+                            <i class="pt p" style="left:98.1%;top:70%"></i>
+                        </div>
+                    </div>
+                    <div class="x-axis">
+                        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                        <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                    </div>
+                </section>
+
+                <section class="list-block">
+                    <h2>Recent Expenses</h2>
+                    <div class="row-card">
+                        <span class="avatar av-peach">🍴</span>
+                        <div class="who"><strong>Food</strong><small>12 entries</small></div>
+                        <div class="more"><b>Lunch, groceries and dining out</b><a href="{{ url_for('register') }}">spendly/food</a></div>
+                        <span class="pill green">This month</span>
+                    </div>
+                    <div class="row-card">
+                        <span class="avatar av-dark">🧾</span>
+                        <div class="who"><strong>Bills</strong><small>5 entries</small></div>
+                        <div class="more"><b>Rent, electricity and subscriptions</b><a href="{{ url_for('register') }}">spendly/bills</a></div>
+                        <span class="pill mauve">Recurring</span>
+                    </div>
+                </section>
+
+                <p class="legal">
+                    <a href="{{ url_for('terms') }}">Terms and Conditions</a>
+                    <a href="{{ url_for('privacy') }}">Privacy Policy</a>
+                </p>
+            </main>
+
+            <!-- Right column -->
+            <aside class="rail">
+
+                <div class="rail-block">
+                    <div class="rail-head">
+                        <h3>Start tracking<br>your expenses</h3>
+                        <a href="{{ url_for('register') }}" class="join">+ Join</a>
+                    </div>
+                    <a href="{{ url_for('register') }}" class="operator">
+                        <span class="avatar av-a">S</span>
+                        <span class="op-name">Create free account</span>
+                        <svg viewBox="0 0 24 24"><path d="M5 4l4-1 2 5-3 2a11 11 0 0 0 5 5l2-3 5 2-1 4c-9 2-16-5-14-14z"/></svg>
+                        <svg viewBox="0 0 24 24" class="kebab"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></svg>
+                    </a>
                 </div>
-            </div>
+
+                <div class="rail-block">
+                    <h3>Messages</h3>
+                    <ul class="msgs">
+                        <li><span class="avatar av-a">A</span><div><b>Aarav S.</b><small>Your expense tracker is amazing!</small></div></li>
+                        <li><span class="avatar av-b">P</span><div><b>Priya K.</b><small>Spendly shows where my money goes</small></div></li>
+                        <li><span class="avatar av-c">R</span><div><b>Rohan M.</b><small>Thanks for the monthly summaries</small></div></li>
+                        <li><span class="avatar av-d">N</span><div><b>Neha D.</b><small>Wow, Spendly saved me a lot</small></div></li>
+                        <li><span class="avatar av-e">V</span><div><b>Vikram T.</b><small>Spendly - the best tracker</small></div></li>
+                    </ul>
+                </div>
+
+                <div class="rail-block">
+                    <h3>Quick Add</h3>
+                    <form class="note" onsubmit="return false">
+                        <input type="text" placeholder="Lunch, ₹250, today" aria-label="Quick add">
+                        <svg viewBox="0 0 24 24"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg>
+                    </form>
+                    <h4>Categories</h4>
+                    <div class="chips">
+                        <span class="chip"><span class="avatar av-a">F</span>Food<i>✕</i></span>
+                        <span class="chip"><span class="avatar av-c">B</span>Bills<i>✕</i></span>
+                    </div>
+                </div>
+
+            </aside>
         </div>
     </div>
-</section>
 
-<section class="features">
-    <div class="features-inner">
-        <div class="feature-card">
-            <div class="feature-icon">₹</div>
-            <h3 class="feature-title">Log expenses instantly</h3>
-            <p class="feature-body">Add any expense in seconds. Category, amount, date, description — all in one simple form.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">◎</div>
-            <h3 class="feature-title">Understand your patterns</h3>
-            <p class="feature-body">See exactly where your money goes with category breakdowns and monthly summaries.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">◷</div>
-            <h3 class="feature-title">Filter by time period</h3>
-            <p class="feature-body">View your spending for any date range — last week, last month, or a custom period.</p>
-        </div>
-    </div>
-</section>
-
-<section class="cta-section">
-    <div class="cta-inner">
-        <h2 class="cta-title">Ready to take control?</h2>
-        <p class="cta-body">Join thousands of people who track their expenses with Spendly.</p>
-        <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
-    </div>
-</section>
-
-{% endblock %}
+</body>
+</html>
