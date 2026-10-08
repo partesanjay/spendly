@@ -26,7 +26,7 @@ Add two helper functions to `database/db.py` (no schema impact):
 
 - Create: none
 - Modify:
-  - `expense-tracker/templates/register.html` — change `action="/register"` to `action="{{ url_for('register') }}"`, repopulate `name` and `email` inputs after a failed submit (never the password), and add `minlength="8"` to the password input.
+  - `expense-tracker/templates/register.html` — change `action="/register"` to `action="{{ url_for('register') }}"`, repopulate `name` and `email` inputs after a failed submit (never the passwords), add `minlength="8"` to the password input, and add a "Confirm password" input (`name="confirm_password"`) below the password field.
 
 ## Files to change
 
@@ -53,6 +53,7 @@ No new dependencies.
   - `name` and `email` are non-empty after `strip()`
   - `email` is lowercased and stripped before checking and storing, and contains `@`
   - `password` is at least 8 characters
+  - `confirm_password` matches `password` exactly
   - email is not already registered (check with `get_user_by_email`, and also catch `sqlite3.IntegrityError` to cover a race)
 - Never store or echo the plaintext password
 - On success redirect to `url_for('login')` (302). Do not create a session — login is the next step.
@@ -66,7 +67,9 @@ No new dependencies.
 - [ ] Registering the same email again (also with different casing) re-renders the form with an "already registered" error and creates no second row
 - [ ] Registering `demo@spendly.com` is rejected as already registered
 - [ ] A password shorter than 8 characters is rejected with an error and no row is created
+- [ ] A form with a "Confirm password" field below "Password" is shown
+- [ ] Mismatched password and confirm password is rejected with a "Passwords do not match" error and no row is created
 - [ ] Empty or whitespace-only name or email is rejected with an error
-- [ ] After a failed submit the name and email fields keep their values and the password field is empty
+- [ ] After a failed submit the name and email fields keep their values and both password fields are empty
 - [ ] The form posts to the URL produced by `url_for('register')`
 - [ ] The app starts without errors and no existing page is broken
