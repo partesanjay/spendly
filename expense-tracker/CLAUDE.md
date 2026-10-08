@@ -9,7 +9,7 @@ The git root is `D:\Claude\First_Porject\expense-tracker`, but the app lives in 
 ## Commands
 
 ```
-pip install -r requirements.txt
+pip install -r requirements.txt #important
 python app.py            # dev server, debug mode, http://localhost:5001
 pytest                   # pytest + pytest-flask are in requirements, but no tests exist yet
 pytest path/to/test_file.py::test_name   # single test
@@ -27,3 +27,4 @@ No linter or build step is configured.
 - `static/css/style.css` — shared styles driven by CSS variables in `:root` (ink/paper/accent palette); `landing.css` is landing-only. `static/js/main.js` is an empty placeholder.
 
 Use `url_for(...)` with the route function names (`landing`, `login`, `register`, `terms`, `privacy`) when linking between pages. The currency theme is rupees.
+
