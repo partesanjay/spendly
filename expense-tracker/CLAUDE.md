@@ -9,13 +9,17 @@ The git root is `D:\Claude\First_Porject\expense-tracker`, but the app lives in 
 ## Commands
 
 ```
-pip install -r requirements.txt #important
+pip install -r requirements.txt
 python app.py            # dev server, debug mode, http://localhost:5001
 pytest                   # pytest + pytest-flask are in requirements, but no tests exist yet
 pytest path/to/test_file.py::test_name   # single test
 ```
 
 No linter or build step is configured.
+
+Git: the default branch is `master` (not `main`), and `origin` is `https://github.com/partesanjay/spendly.git`. Work is done on feature branches (e.g. `feature/database-setup`).
+
+See `ROUTES.md` for the route map and `ROADMAP.md` for the planned tutorial steps.
 
 ## Architecture
 
