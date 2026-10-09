@@ -2,7 +2,7 @@
 
 ## Overview
 
-Make the existing `/login` page functional and replace the `/logout` stub. Registration (step 2) creates users but nobody can sign in yet. This step adds POST handling on `/login` that verifies the email and password hash and stores the user in a Flask session, plus a `/logout` route that clears the session. Both the shared navbar (`base.html`) and the standalone landing page reflect auth state, so logout can be verified from the page users land on. `/profile` is still a stub until step 4, so login and logout both redirect to the landing page. This covers the roadmap's "register and login" (login half) and step 3 (logout), and unblocks every user-scoped feature that follows.
+Make the existing `/login` page functional and replace the `/logout` stub. Registration (step 2) creates users but nobody can sign in yet. This step adds POST handling on `/login` that verifies the email and password hash and stores the user in a Flask session, plus a `/logout` route that clears the session. Both the shared navbar (`base.html`) and the standalone landing page reflect auth state, so the signed-in state is visible. `/profile` is still a stub until step 4, so login redirects to the landing page; logout redirects to the login page. This covers the roadmap's "register and login" (login half) and step 3 (logout), and unblocks every user-scoped feature that follows.
 
 ## Depends on
 
@@ -13,7 +13,7 @@ Make the existing `/login` page functional and replace the `/logout` stub. Regis
 
 - `GET /login` — render the sign-in form (already exists); redirect to `/` if already logged in — public
 - `POST /login` — validate the form, verify credentials, set the session and redirect to `/`; re-render the form with an error on failure — public
-- `GET /logout` — clear the session and redirect to `/` — public (harmless if not logged in)
+- `GET /logout` — clear the session and redirect to `/login` — public (harmless if not logged in)
 
 ## Database changes
 
@@ -71,6 +71,6 @@ No new dependencies.
 - [ ] The form posts to the URL produced by `url_for('login')`
 - [ ] After login the landing page shows the user's initial, name and a "Sign out" button, and pages using `base.html` (e.g. `/terms`) show the user's name and "Sign out" instead of "Sign in" / "Get started"
 - [ ] Visiting `/login` while logged in redirects to `/`
-- [ ] A single click on Sign out clears the session and returns to `/`, which shows the "S" avatar and a "Sign in" button again
+- [ ] A single click on Sign out clears the session and lands on `/login`; going back to `/` shows the "S" avatar and a "Sign in" button
 - [ ] After logout, `session` no longer contains `user_id`
 - [ ] The app starts without errors and no existing page is broken
