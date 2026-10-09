@@ -14,7 +14,7 @@ Step numbers come from the placeholder routes in `app.py` and the comment in `da
 | 1 | Database setup | `get_db()`, `init_db()`, `seed_db()` in `database/db.py` (SQLite, foreign keys on) |
 | 2 *(proposed)* | Register and login | POST handling, password hashing with Werkzeug, session cookie |
 | 3 | Logout | Clear the session, redirect to landing |
-| 4 | Profile page | Show the signed-in user's details |
+| 4 *(done)* | Profile page | Show the signed-in user's details, spending stats and recent expenses |
 | 5 *(proposed)* | Expense list / dashboard | List the user's expenses, totals |
 | 6 *(proposed)* | Categories and filters | Category per expense, filter by date and category |
 | 7 | Add expense | Replace the `/expenses/add` stub with a form |
