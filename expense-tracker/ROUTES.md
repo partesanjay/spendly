@@ -8,7 +8,7 @@ All routes are defined in `app.py`. Dev server: `python app.py` → http://local
 |--------|-------------|------------|-----------------|-----------------------------------------|
 | GET    | `/`         | `landing`  | `landing.html`  | Standalone page (does not extend base)  |
 | GET    | `/register` | `register` | `register.html` | Form display only, no submit handling   |
-| GET/POST | `/login`  | `login`    | `login.html`    | Verifies password, sets session, to `/` |
+| GET/POST | `/login`  | `login`    | `login.html`    | Verifies password, sets session, to `/profile` |
 | GET    | `/logout`   | `logout`   | none            | Clears session, redirects to `/login`  |
 | GET    | `/profile`  | `profile`  | `profile.html`  | Login required, else redirects to `/login` |
 | GET    | `/terms`    | `terms`    | `terms.html`    | Terms and Conditions                    |
