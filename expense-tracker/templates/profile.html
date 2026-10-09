@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Spendly{% endblock %}
+
+{% block content %}
+<section class="profile">
+    <div class="profile-card">
+        <div class="profile-avatar" aria-hidden="true">{{ user['name'][:1]|upper }}</div>
+        <div class="profile-info">
+            <h1 class="profile-name">{{ user['name'] }}</h1>
+            <p class="profile-email">{{ user['email'] }}</p>
+            <p class="profile-since">Member since {{ user['created_at'][:10] }}</p>
+        </div>
+    </div>
+
+    <div class="profile-stats">
+        <div class="stat-card">
+            <span class="stat-label">Total spent</span>
+            <span class="stat-value">₹{{ '%.2f'|format(summary['total']) }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Expenses</span>
+            <span class="stat-value">{{ summary['count'] }}</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-label">Top category</span>
+            <span class="stat-value">{{ summary['top_category'] or '—' }}</span>
+        </div>
+    </div>
+
+    <div class="profile-recent">
+        <h2 class="profile-heading">Recent expenses</h2>
+        {% if recent %}
+        <ul class="recent-list">
+            {% for e in recent %}
+            <li class="recent-item">
+                <div class="recent-main">
+                    <span class="recent-desc">{{ e['description'] or e['category'] }}</span>
+                    <span class="recent-meta">{{ e['date'] }} · {{ e['category'] }}</span>
+                </div>
+                <span class="recent-amount">₹{{ '%.2f'|format(e['amount']) }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="recent-empty">No expenses yet. Once you add some, they will show up here.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
