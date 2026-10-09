@@ -54,10 +54,20 @@
                 <button class="icon-btn plain" aria-label="Notifications">
                     <svg viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg>
                 </button>
-                <span class="avatar av-main" aria-hidden="true">S</span>
-                <a href="{{ url_for('login') }}" class="icon-btn" aria-label="Sign in">
+                {% if session.get('user_id') %}
+                <span class="avatar av-main" aria-hidden="true">{{ session.get('user_name')[:1]|upper }}</span>
+                <span class="auth-name">{{ session.get('user_name') }}</span>
+                <a href="{{ url_for('logout') }}" class="icon-btn labelled" aria-label="Sign out">
                     <svg viewBox="0 0 24 24"><path d="M14 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5M10 8l-4 4 4 4M6 12h10"/></svg>
+                    Sign out
                 </a>
+                {% else %}
+                <span class="avatar av-main" aria-hidden="true">S</span>
+                <a href="{{ url_for('login') }}" class="icon-btn labelled" aria-label="Sign in">
+                    <svg viewBox="0 0 24 24"><path d="M14 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5M10 8l-4 4 4 4M6 12h10"/></svg>
+                    Sign in
+                </a>
+                {% endif %}
             </div>
         </header>
 
